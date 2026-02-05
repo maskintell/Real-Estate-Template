@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeAbode | Premium Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white/0 backdrop-blur-none transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-blue-900 tracking-tighter">LUXE<span class="text-blue-500">ABODE</span></a>
+                </div>
+                <div class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                    <a href="index.html" class="hover:text-blue-600 transition-colors">Home</a>
+                    <a href="penthouses.html" class="hover:text-blue-600 transition-colors">Penthouses</a>
+                    <a href="beachfront.html" class="hover:text-blue-600 transition-colors">Beachfront</a>
+                    <a href="developments.html" class="hover:text-blue-600 transition-colors">Developments</a>
+                    <a href="contact.html" class="hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="contact.html" class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-[90vh] flex items-center justify-center text-white overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Modern House" 
+                 class="w-full h-full object-cover brightness-50">
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <div class="inline-block px-4 py-1 mb-6 border border-white/30 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium tracking-widest uppercase">
+                Elevated Living Defined
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in leading-tight">Find Your Dream Sanctuary</h1>
+            <p class="text-xl md:text-2xl mb-10 text-gray-200">Curated premium properties in the world's most desirable locations.</p>
+            
+            <!-- Search Bar -->
+            <div class="bg-white p-2 rounded-2xl md:rounded-full shadow-2xl flex flex-col md:flex-row gap-2 text-gray-800">
+                <div class="flex-1 px-6 py-2 border-r border-gray-100 text-left">
+                    <label class="block text-xs font-bold text-gray-400 uppercase">Location</label>
+                    <input type="text" placeholder="Where are you looking?" class="w-full outline-none text-sm">
+                </div>
+                <div class="flex-1 px-6 py-2 border-r border-gray-100 text-left">
+                    <label class="block text-xs font-bold text-gray-400 uppercase">Property Type</label>
+                    <select id="search-category" class="w-full outline-none text-sm bg-transparent">
+                        <option value="all">All Properties</option>
+                        <option value="penthouse">Penthouses</option>
+                        <option value="beachfront">Beachfront</option>
+                        <option value="development">New Developments</option>
+                        <option value="mountain">Mountain Retreats</option>
+                    </select>
+                </div>
+                <button onclick="handleSearch()" class="bg-blue-600 text-white px-10 py-4 rounded-xl md:rounded-full font-bold hover:bg-blue-700 transition-all">
+                    Search Listings
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <span id="properties-subtitle" class="text-blue-600 font-bold uppercase tracking-widest text-sm">Handpicked Listings</span>
+                    <h2 id="properties-title" class="text-4xl font-bold text-gray-900 mt-2">Featured Masterpieces</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="property-grid" data-filter="all">
+                <!-- Cards populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold uppercase tracking-widest text-sm">Support</span>
+                <h2 class="text-4xl font-bold text-gray-900 mt-2">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <button onclick="toggleFAQ(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="font-bold text-gray-900">How do I schedule a private viewing?</span>
+                        <i class="fas fa-chevron-down faq-icon text-blue-500"></i>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="text-gray-600">You can schedule a viewing by clicking the "Schedule Private Tour" button on any property listing, or by contacting our concierge directly at +1 (555) LUXE-HOME.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <button onclick="toggleFAQ(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="font-bold text-gray-900">Do you handle international property sales?</span>
+                        <i class="fas fa-chevron-down faq-icon text-blue-500"></i>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="text-gray-600">Yes, LuxeAbode specializes in international transactions. We have a network of legal and financial experts across Europe, Asia, and North America to facilitate seamless cross-border acquisitions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <button onclick="toggleFAQ(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="font-bold text-gray-900">What are the typical closing costs for luxury estates?</span>
+                        <i class="fas fa-chevron-down faq-icon text-blue-500"></i>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="text-gray-600">Closing costs typically range from 2% to 5% of the purchase price, depending on the location. This includes title insurance, legal fees, and transfer taxes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm">
+                    <button onclick="toggleFAQ(this)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                        <span class="font-bold text-gray-900">Are virtual tours available for all listings?</span>
+                        <i class="fas fa-chevron-down faq-icon text-blue-500"></i>
+                    </button>
+                    <div class="faq-content px-6">
+                        <p class="text-gray-600">We offer high-definition 3D Matterport tours for 95% of our exclusive listings. Private 1-on-1 video walkthroughs with an agent can also be arranged via Zoom or FaceTime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold uppercase tracking-widest text-sm">Get In Touch</span>
+                <h1 class="text-5xl font-bold text-gray-900 mt-2">Let's Find Your Dream Home</h1>
+                <p class="text-gray-500 mt-4 text-xl">Our specialist agents are ready to assist you with your next luxury investment.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row mb-12">
+                <div class="bg-blue-600 text-white p-12 md:w-1/3">
+                    <h3 class="text-2xl font-bold mb-8">Contact Info</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-4"></i>
+                            <p>123 Luxury Way,<br>Beverly Hills, CA 90210</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-4"></i>
+                            <p>+1 (555) LUXE-HOME</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-4"></i>
+                            <p>concierge@luxeabode.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-12 md:w-2/3">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset();">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">First Name</label>
+                                <input type="text" required class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Last Name</label>
+                                <input type="text" required class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Email Address</label>
+                            <input type="email" required class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Message</label>
+                            <textarea rows="4" required class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-200">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Live Map Section -->
+            <div class="mb-24">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Office Location</h3>
+                <div class="rounded-3xl overflow-hidden shadow-2xl border-8 border-white h-[450px] relative">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.452627960113!2d-118.40292152341235!3d34.07068571686629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bc04d6d147ab%3A0xd6c7c3792797a783!2sRodeo%20Dr%2C%20Beverly%20Hills%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div id="property-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative translate-y-10 transition-transform duration-300" id="modal-content">
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="text-3xl font-bold text-white tracking-tighter mb-6 block">LUXE<span class="text-blue-500">ABODE</span></a>
+                    <p class="text-gray-400 mb-6">Redefining luxury living through curated architectural masterpiece and exclusive estates across the globe.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" title="Facebook" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1877F2] transition-all duration-300">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" title="Instagram" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 transition-all duration-300">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" title="X (Twitter)" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black transition-all duration-300">
+                            <i class="fab fa-x-twitter text-sm"></i>
+                        </a>
+                        <a href="#" title="LinkedIn" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#0077B5] transition-all duration-300">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" title="YouTube" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#FF0000] transition-all duration-300">
+                            <i class="fab fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="penthouses.html" class="hover:text-white transition-colors">Penthouses</a></li>
+                        <li><a href="beachfront.html" class="hover:text-white transition-colors">Beachfront</a></li>
+                        <li><a href="developments.html" class="hover:text-white transition-colors">New Developments</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Explore</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li><a href="index.html#properties" class="hover:text-white transition-colors">Featured Listings</a></li>
+                        <li><a href="reports.html" class="hover:text-white transition-colors">Market Reports</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Stay Informed</h4>
+                    <form onsubmit="handleNewsletter(event)" class="flex flex-col gap-3">
+                        <input type="email" id="newsletter-email" placeholder="Your email address" class="bg-gray-800 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 text-white outline-none">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-100">Join Newsletter</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                <p>
+                    &copy; 2023 LuxeAbode Real Estate. All rights reserved.<br>
+                    Built with ⚡ by <a href="https://mask-intelligence.web.app" target="_blank" rel="noopener noreferrer" style="color: #64748b; text-decoration: none;">MASK INTELLIGENCE</a> | Last updated: 
+                    <script>
+                        document.write(new Date().toLocaleDateString('en-US', {month: 'long', year: 'numeric'}));
+                    </script>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
