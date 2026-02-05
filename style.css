@@ -1,0 +1,100 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.property-card:hover .property-image {
+    transform: scale(1.1);
+}
+
+.property-card:hover .quick-view-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.property-image {
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.quick-view-btn {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+#property-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+#property-modal.show #modal-content {
+    transform: translateY(0);
+}
+
+#navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    height: 70px;
+}
+
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+.scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* FAQ Accordion Transitions */
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+.faq-item.active .faq-content {
+    max-height: 200px;
+    padding-bottom: 1.5rem;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.fa-spin {
+    animation: spin 1s linear infinite;
+}
+
+footer .fab {
+    transition: transform 0.2s ease;
+}
+footer a:hover .fab {
+    transform: scale(1.2);
+}
