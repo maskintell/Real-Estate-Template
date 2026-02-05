@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Me via MTN Mobile Money</title>
+    <style>
+        /* CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+        .donation-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        .input-group {
+            margin: 25px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        input:focus {
+            outline: 2px solid #FFCC00;
+            background: white;
+        }
+        .btn {
+            background: #FFCC00;
+            color: black;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn:hover {
+            background: #ffd633;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        .hidden {
+            display: none;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #instruction {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .mtn-logo {
+            font-weight: bold;
+            color: #FFCC00;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="donation-box">
+        <h1>SUPPORT WITH ANY AMOUNT </h1>
+        <p>Enter any amount to generate a payment link for MTN Uganda:</p>
+        
+        <div class="input-group">
+            <label for="amount">Amount (UGX):</label>
+            <input type="number" id="amount" placeholder="e.g. 5000" min="100" step="100">
+        </div>
+        
+        <button class="btn" onclick="generateMTNLink()">
+            <span></span>
+            Generate MTN Payment Link
+        </button>
+        
+        <div class="note">
+            Minimum amount: 100 UGX. You'll be redirected to MTN Mobile Money to complete the payment.
+        </div>
+        
+        <div id="result" class="hidden">
+            <p id="instruction"></p>
+            <a id="payment-link" class="btn" target="_blank">
+                <span></span>
+                Open MTN Mobile Money
+            </a>
+            <div class="note" style="margin-top: 15px;">
+                Click the button above to open MTN Mobile Money with the payment pre-filled. Confirm the payment on your phone.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        const mtnNumber = "966662";
+        
+        function generateMTNLink() {
+            const amount = document.getElementById('amount').value;
+            
+            if (!amount || amount < 100) {
+                alert("Please enter a valid amount (minimum 100 UGX)");
+                return;
+            }
+            
+            if (amount > 10000000) {
+                alert("Amount is too high. Please enter a smaller amount.");
+                return;
+            }
+            
+            // Format amount with commas for display
+            const formattedAmount = parseInt(amount).toLocaleString('en-UG');
+            
+            // Create USSD code for MTN Uganda
+            const ussdCode = `*165*3*${mtnNumber}*${amount}%23`;
+            
+            showResult(
+                `Payment of <span class="mtn-logo">${formattedAmount} UGX</span> to MTN number: <span class="mtn-logo">${mtnNumber}</span>`,
+                `tel:${ussdCode}`
+            );
+        }
+        
+        function showResult(instruction, link) {
+            document.getElementById('instruction').innerHTML = instruction;
+            const paymentLink = document.getElementById('payment-link');
+            paymentLink.href = link;
+            document.getElementById('result').classList.remove('hidden');
+            
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest' 
+            });
+        }
+        
+        // Allow Enter key to trigger payment generation
+        document.getElementById('amount').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateMTNLink();
+            }
+        });
+        
+        // Focus on amount input when page loads
+        window.onload = function() {
+            document.getElementById('amount').focus();
+        };
+    </script>
+</body>
+</html>
